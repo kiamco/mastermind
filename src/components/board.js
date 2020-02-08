@@ -2,28 +2,62 @@ import React, { useContext, useEffect, useState } from 'react';
 import { BoardContext } from '../context/boardContext.js'
 const Board = () => {
 
-    const { rowState, dispatch, keys, colors } = useContext(BoardContext)
+    const [rowCount, setRowCount] = useState(1);
+    const [input, setInput] = useState('');
+    const { rowState, dispatch, answer } = useContext(BoardContext)
+    const findCommonEl = (array1,array2) => {
+
+    }
+
+    const findCommonElByIndex = (array1,array2) => {
+        let obj = {};
+        let checklist =[]
+        for (let i = 0; i < array1.length; i++) {
+            if(!obj[array1[i]]){
+                obj[array1[i]] = true
+                console.log(obj)
+            }
+        }
+
+        for (let k = 0; k < array2.length; k++){
+            if (obj[array2[k]]){
+                console.log('hi', obj[array2[k]])
+                checklist.push(true);
+            } else{
+                checklist.push(false);
+            }
+        }
+
+        return checklist;
+    }
 
     const renderRow = (row) => {
         if (row.length > 0)
             return row.map(el => <div className="answer">{el}</div>)
     }
 
-    // const onKeyClick = (e, rowNumber) => {
-    //     e.preventDefault()
-    //     setRows(
-    //         {
-    //             ...rows,
-    //             row2:
-    //                 [
-    //                     ...rowNumber,
-    //                     ...e.currentTarget.textContent
-    //                 ]
-    //         }
-    //     )
-    // }
+    const inputOnChange = (event) => {
+        setInput(event.target.value)
+        console.log(input);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        input.split('').map(el => {
+            dispatch({ type: `row${rowCount}`,num:el })
+        })
+
+        if (answer) {
+            console.log(answer, input)
+            console.log(findCommonElByIndex(answer,input.split('')))
+
+        }
+        setRowCount(rowCount + 1);
+        
+    }
 
     useEffect(() => {
+       
     }, [])
 
     return (
@@ -35,7 +69,6 @@ const Board = () => {
                     </div>
                     <div className="input">
                         {renderRow(rowState.row2)}
-
                     </div>
                     <div className="input">
                         {renderRow(rowState.row3)}
@@ -85,16 +118,13 @@ const Board = () => {
                     <div className="feedback"></div>
                 </div>
             </div>
-            <div className="keyboard">
-                {keys.split("").map((el, i) => {
-                    return (
-                        <button
-                            className={`key ${colors[i]}`}
-                            onClick={(e) => dispatch({ type: 'row2', num: e.currentTarget.textContent})}>
-                            {el}
-                        </button>)
-                })}
-            </div>
+            <form onSubmit={handleSubmit}>
+                <input 
+                type="text"
+                onChange={inputOnChange}
+                pattern="[0-7]{4,4}" required title="need four digit combination use only numbers 0-7"
+                />
+            </form>
         </>
     )
 }

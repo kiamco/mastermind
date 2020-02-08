@@ -5,6 +5,21 @@ export const BoardContext = createContext();
 
 export const BoardProvider = (props) => {
 
+    const [answer, setAnswer] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://www.random.org/integers/?num=4&min=0&max=7&col=1&format=plain&rnd=new&base=10')
+        .then(numbers => {
+            setAnswer(numbers.data.split('\n'))
+        })
+        .catch(err => console.error(err));
+
+
+    },[])
+
+    answer.length = 4
+
+    console.log(answer)
     const rowReducer = (state, action) => {
         switch (action.type) {
             case 'row1':
@@ -47,7 +62,46 @@ export const BoardProvider = (props) => {
                         ...action.num
                     ]
                 }
-            
+            case 'row6':
+                return {
+                    ...state,
+                    row6: [
+                        ...state.row6,
+                        ...action.num
+                    ]
+                }
+            case 'row7':
+                return {
+                    ...state,
+                    row7: [
+                        ...state.row7,
+                        ...action.num
+                    ]
+                }
+            case 'row8':
+                return {
+                    ...state,
+                    row8: [
+                        ...state.row8,
+                        ...action.num
+                    ]
+                }
+            case 'row9':
+                return {
+                    ...state,
+                    row9: [
+                        ...state.row9,
+                        ...action.num
+                    ]
+                }
+            case 'row10':
+                return {
+                    ...state,
+                    row10: [
+                        ...state.row10,
+                        ...action.num
+                    ]
+                }
             default:
                 console.log('err')
 
@@ -67,13 +121,8 @@ export const BoardProvider = (props) => {
         row10: []
     });
 
-
-    const [keys] = useState('12345678');
-
-    const colors =["red","yellow","green","light-blue","ocean-blue","dark-blue","purple","pink"]
-
         return (
-        <BoardContext.Provider value={{rowState,dispatch,keys,colors }}>
+        <BoardContext.Provider value={{rowState,dispatch,answer}}>
             {props.children}
         </BoardContext.Provider>
     )
