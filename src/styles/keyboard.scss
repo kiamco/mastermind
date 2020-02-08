@@ -1,0 +1,59 @@
+.keyboard {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+
+    .key {
+        width: 40px;
+        height: 40px;
+        font-size: rem;
+        margin: 0px 7px;
+        border-radius: 5px;
+        font-size:1.5rem;
+        border:none;
+        transition:500ms;
+
+        &:hover{
+            cursor: pointer;
+            
+        }
+    }
+}
+
+.red {
+    background: #FFA4A4;
+}
+
+.yellow {
+    background: #FCEA8E;
+    ;
+
+}
+
+.green {
+    background: #B7F468;
+
+}
+
+.light-blue {
+    background:  #96FCD7;
+
+}
+
+.ocean-blue {
+    background:#85CFF9;
+
+}
+
+.dark-blue {
+    background: #2D68FE;
+}
+
+.purple {
+    background: #BA57F7;
+
+}
+
+.pink {
+    background: #F855D4;
+}

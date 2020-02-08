@@ -1,0 +1,48 @@
+.board-container {
+    height: 450px;
+    max-width: 450px;
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+
+    .input-container {
+        height: 100%;
+        margin-top: 20px;
+
+        .input {
+            width: 200px;
+            height: 30px;
+            border: 1px solid black;
+            margin: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .answer {
+                width: 40px;
+                margin: 0px 7px;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                border:1px solid black;
+            }
+
+
+        }
+    }
+
+    .feedback-container {
+        width: 200px;
+        margin-top: 5px;
+
+        .feedback {
+            width: 200px;
+            height: 30px;
+
+            margin: 9px;
+            border-radius: .5rem;
+        }
+    }
+}
