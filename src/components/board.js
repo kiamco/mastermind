@@ -1,67 +1,54 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { BoardContext } from '../context/boardContext.js'
+import { BoardContext } from '../context/boardContext.js';
+import {findCommonEl} from '../utils/checkAnswer.js';
+import {emptyStatr} from "../assets/favourite.png";
 const Board = () => {
 
     const [rowCount, setRowCount] = useState(1);
     const [input, setInput] = useState('');
-    const { rowState, dispatch, answer } = useContext(BoardContext)
-    const findCommonEl = (array1,array2) => {
-
-    }
-
-    const findCommonElByIndex = (array1,array2) => {
-        let obj = {};
-        let checklist =[]
-        for (let i = 0; i < array1.length; i++) {
-            if(!obj[array1[i]]){
-                obj[array1[i]] = true
-                console.log(obj)
-            }
-        }
-
-        for (let k = 0; k < array2.length; k++){
-            if (obj[array2[k]]){
-                console.log('hi', obj[array2[k]])
-                checklist.push(true);
-            } else{
-                checklist.push(false);
-            }
-        }
-
-        return checklist;
-    }
+    const { rowState, rowDispatch, answer,feedDispatch,feedState } = useContext(BoardContext)
 
     const renderRow = (row) => {
         if (row.length > 0)
             return row.map(el => <div className="answer">{el}</div>)
     }
 
+    const renderFeed = (feed) => {
+        if(feed.length > 0)
+            return feed.map(el => <img src={el} />)
+        
+    }
+
     const inputOnChange = (event) => {
         setInput(event.target.value)
-        console.log(input);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         input.split('').map(el => {
-            dispatch({ type: `row${rowCount}`,num:el })
+            rowDispatch({ type: `row${rowCount}`, num: el })
         })
+        
 
         if (answer) {
-            console.log(answer, input)
-            console.log(findCommonElByIndex(answer,input.split('')))
+            const answerCopy = JSON.parse(JSON.stringify(answer))
+            
+            feedDispatch({ type: `feed${rowCount}`, num: findCommonEl(input.split(''), answerCopy) })
+              
 
+            
         }
         setRowCount(rowCount + 1);
-        
+
     }
 
     useEffect(() => {
-       
+
     }, [])
 
     return (
         <>
+        <h1 className='game-title'>MaterMind</h1>
             <div className="board-container">
                 <div className="input-container">
                     <div className="input">
@@ -106,23 +93,44 @@ const Board = () => {
                 </div>
                 <div className="feedback-container">
                     <h1>Feedback</h1>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
-                    <div className="feedback"></div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed1)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed2)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed3)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed4)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed5)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed6)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed7)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed8)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed9)}
+                    </div>
+                    <div className="feedback">
+                        {renderFeed(feedState.feed10)}
+                    </div>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
-                <input 
-                type="text"
-                onChange={inputOnChange}
-                pattern="[0-7]{4,4}" required title="need four digit combination use only numbers 0-7"
+                <input
+                    placeholder='e.g. 1726'
+                    type="text"
+                    onChange={inputOnChange}
+                    pattern="[0-7]{4,4}" required title="need four digit combination use only numbers 0-7"
                 />
             </form>
         </>

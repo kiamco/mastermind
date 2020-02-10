@@ -1,11 +1,20 @@
+h1{
+    font-family: $main-font;
+}
+
+h1.game-title{
+    margin-top:5px;
+    font-size:1.5rem;
+}
+
 .board-container {
-    height: 450px;
+    
     max-width: 450px;
     width: 100%;
     margin: 20px auto;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
+    // border: 1px solid black;
 
     .input-container {
         height: 100%;
@@ -35,14 +44,41 @@
 
     .feedback-container {
         width: 200px;
-        margin-top: 5px;
-
+        padding-top: 5px;
+        background: #CCDBE9;
+        border-radius: 5px;
         .feedback {
             width: 200px;
             height: 30px;
-
-            margin: 9px;
+            
+            margin: 10px 0px;
             border-radius: .5rem;
         }
     }
+}
+
+
+form{
+    input{
+        width: 400px;
+        height: 50px;
+        &::placeholder {
+            // font-family: $font;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 2rem;
+            line-height: 37px;
+            text-align: center;
+            
+        }
+       
+    }
+     input[type=text] {
+         font-style: normal;
+         font-weight: normal;
+         font-size: 25px;
+         padding: 25px 59px;
+         padding-left: 20px;
+         text-align: center;
+     }
 }
