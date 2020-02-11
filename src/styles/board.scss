@@ -5,6 +5,7 @@ h1{
 h1.game-title{
     margin-top:5px;
     font-size:1.5rem;
+    font-weight: bolder;
 }
 
 .board-container {
@@ -16,25 +17,34 @@ h1.game-title{
     justify-content: center;
     // border: 1px solid black;
 
+
+
+
     .input-container {
         height: 100%;
-        margin-top: 20px;
+        padding-top:5px;
+        .header{
+            display:flex;
+            flex-flow: row nowrap;
+            align-items: center;
 
+        }
         .input {
             width: 200px;
-            height: 30px;
+            height: 25px;
             border: 1px solid black;
             margin: 10px;
             border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: $main-font;
 
             .answer {
                 width: 40px;
                 margin: 0px 7px;
                 border-radius: 5px;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 border:1px solid black;
             }
 
@@ -49,7 +59,7 @@ h1.game-title{
         border-radius: 5px;
         .feedback {
             width: 200px;
-            height: 30px;
+            height: 25px;
             
             margin: 10px 0px;
             border-radius: .5rem;
@@ -60,7 +70,7 @@ h1.game-title{
 
 form{
     input{
-        width: 400px;
+        width: 350px;
         height: 50px;
         &::placeholder {
             // font-family: $font;
@@ -81,4 +91,59 @@ form{
          padding-left: 20px;
          text-align: center;
      }
+}
+
+.controls{
+    display: flex;
+    flex-flow:row;
+    justify-content: space-between;
+    align-content: center;
+    width: 400px;
+    @media (max-width: 600px) {
+        margin:0px auto;
+        justify-content: space-around;
+    }
+
+    button{
+        border:none;
+        background: white;
+        transition: 500ms;
+        &:hover{
+            border:3px solid grey;
+            border-radius: 1rem;
+            cursor: pointer;
+            background: $sec-color;
+        }
+    }
+}
+
+.life{
+    display: flex;
+    flex-flow:row nowrap;
+    align-items: center;
+    margin-right: 20px;
+    justify-content: space-between;
+    width: 40px;
+}
+
+.game-over{
+    font-size: 4rem;
+    padding:50px 25px;
+    border:2px solid black;
+    border-radius: 5px;
+    margin: 50px 0px;
+    color:white;
+    background: black;
+    transition: 500ms;
+}
+
+.winner{
+    font-size: 4rem;
+    padding:50px 25px;
+    border:2px solid $winning-color;
+    border-radius: 5px;
+    margin: 50px 0px;
+    color:white;
+    background: $winning-color;
+    transition: 500ms;
 }

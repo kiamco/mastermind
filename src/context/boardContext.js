@@ -7,21 +7,23 @@ export const BoardProvider = (props) => {
 
     const [answer, setAnswer] = useState([]);
 
+    const getAnswer = () => {
+        return axios.get('https://www.random.org/integers/?num=4&min=0&max=7&col=1&format=plain&rnd=new&base=10')
+            .then(numbers => {
+                setAnswer(numbers.data.split('\n').map(el => {
+                    return {
+                        value: el,
+                        color: 'w'
+                    }
+                }))
+
+            })
+            .catch(err => console.error(err));
+    }
     useEffect(() => {
-        axios.get('https://www.random.org/integers/?num=4&min=0&max=7&col=1&format=plain&rnd=new&base=10')
-        .then(numbers => {
-            setAnswer(numbers.data.split('\n').map(el => {
-                return {
-                    value:el,
-                    color:'w'
-                }
-            }))
-        
-        })
-        .catch(err => console.error(err));
+        getAnswer();
 
-
-    },[])
+    }, [])
 
     answer.length = 4
 
@@ -115,7 +117,7 @@ export const BoardProvider = (props) => {
     }
 
     const [rowState, rowDispatch] = useReducer(rowReducer, {
-        row1:[],
+        row1: [],
         row2: [],
         row3: [],
         row4: [],
@@ -229,8 +231,17 @@ export const BoardProvider = (props) => {
         feed10: []
     });
 
-        return (
-        <BoardContext.Provider value={{rowState,rowDispatch, answer, feedState, feedDispatch}}>
+    
+    return (
+        <BoardContext.Provider value={
+            {
+                rowState,
+                rowDispatch,
+                answer,
+                feedState,
+                feedDispatch,
+                getAnswer
+            }}>
             {props.children}
         </BoardContext.Provider>
     )

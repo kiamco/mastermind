@@ -1,0 +1,51 @@
+.homepage{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;;
+    margin:0px 50px;
+    @media (max-width: 600px) {
+        flex-flow: column;
+    }
+    .intructions{
+        text-align: left;
+        width: 80%;
+        margin-left:50px;
+        h1{
+            margin:20px 0px 20px;
+        }
+        h1.rules{
+            margin:20px 0px 20px;
+            font-size: 1.2rem;
+            text-decoration: underline;
+        }
+        h2{
+            margin: 0px 0px 20px;
+            font-family:$main-font;
+        }
+        p{
+            font-family: $main-font;
+            margin-left: 10px;
+        }
+
+        ul{
+            background: $sec-color;
+            border-radius: 5px;
+            padding:20px;
+
+            li{
+                display: flex;
+                flex-flow:row;
+                justify-content: left;
+                align-items: center;
+                margin:5px 0px 5px;
+            }
+        }
+    }
+
+
+}
+
+.instruction-container{
+    // width: 80%;
+    margin-top:50px;
+}

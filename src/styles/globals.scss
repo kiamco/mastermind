@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-button:focus {
+button:focus, input {
     outline: 0;
 }
 

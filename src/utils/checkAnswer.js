@@ -5,10 +5,12 @@ import correct from '../assets/star.png';
 
 export const findCommonEl = (array1, array2) => {
     let feedback = []
-    let f = 0
+    let f = 0 // index marker for feedback []
+    
+    // process feed back
     for (let i = 0; i < array1.length; i++) {
         let found = false;
-        let k = 0;
+        let k = 0; //index marker for the combination
         while (found === false && k <= 3) {
             if (array2[k].color === 'w') {
                 if (array2[k].value === array1[i]) {
