@@ -1,0 +1,149 @@
+h1{
+    font-family: $main-font;
+}
+
+h1.game-title{
+    margin-top:5px;
+    font-size:1.5rem;
+    font-weight: bolder;
+}
+
+.board-container {
+    
+    max-width: 450px;
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    // border: 1px solid black;
+
+
+
+
+    .input-container {
+        height: 100%;
+        padding-top:5px;
+        .header{
+            display:flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+        }
+        .input {
+            width: 200px;
+            height: 25px;
+            border: 1px solid black;
+            margin: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $main-font;
+
+            .answer {
+                width: 40px;
+                margin: 0px 7px;
+                border-radius: 5px;
+                font-size: 1.2rem;
+                border:1px solid black;
+            }
+
+
+        }
+    }
+
+    .feedback-container {
+        width: 200px;
+        padding-top: 5px;
+        background: #CCDBE9;
+        border-radius: 5px;
+        .feedback {
+            width: 200px;
+            height: 25px;
+            
+            margin: 10px 0px;
+            border-radius: .5rem;
+        }
+    }
+}
+
+
+form{
+    input{
+        width: 350px;
+        height: 50px;
+        &::placeholder {
+            // font-family: $font;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 2rem;
+            line-height: 37px;
+            text-align: center;
+            
+        }
+       
+    }
+     input[type=text] {
+         font-style: normal;
+         font-weight: normal;
+         font-size: 25px;
+         padding: 25px 59px;
+         padding-left: 20px;
+         text-align: center;
+     }
+}
+
+.controls{
+    display: flex;
+    flex-flow:row;
+    justify-content: space-between;
+    align-content: center;
+    width: 400px;
+    @media (max-width: 600px) {
+        margin:0px auto;
+        justify-content: space-around;
+    }
+
+    button{
+        border:none;
+        background: white;
+        transition: 500ms;
+        &:hover{
+            border:3px solid grey;
+            border-radius: 1rem;
+            cursor: pointer;
+            background: $sec-color;
+        }
+    }
+}
+
+.life{
+    display: flex;
+    flex-flow:row nowrap;
+    align-items: center;
+    margin-right: 20px;
+    justify-content: space-between;
+    width: 40px;
+}
+
+.game-over{
+    font-size: 4rem;
+    padding:50px 25px;
+    border:2px solid black;
+    border-radius: 5px;
+    margin: 50px 0px;
+    color:white;
+    background: black;
+    transition: 500ms;
+}
+
+.winner{
+    font-size: 4rem;
+    padding:50px 25px;
+    border:2px solid $winning-color;
+    border-radius: 5px;
+    margin: 50px 0px;
+    color:white;
+    background: $winning-color;
+    transition: 500ms;
+}
