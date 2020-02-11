@@ -83,8 +83,25 @@ const Board = () => {
 
     }
 
+    const disableInput = () => {
+        const input = document.querySelector('input');
+        input.disabled = true
+    }
+    
+    const enableInput = () => {
+        const input = document.querySelector('input');
+        input.disabled = false
+    }
+
     useEffect(() => {
-    }, [])
+        if(win || tries === 0 ){
+            disableInput();
+        }else {
+            enableInput();
+        }
+
+        
+    }, [disableInput,enableInput])
 
     return (
         <div className='board'>
@@ -125,15 +142,12 @@ const Board = () => {
 
                             </div>
                             <div className="input">
-                                {renderRow(rowState.row6)}
-
-                            </div>
-                            <div className="input">
                                 {renderRow(rowState.row7)}
 
                             </div>
                             <div className="input">
                                 {renderRow(rowState.row8)}
+
                             </div>
                             <div className="input">
                                 {renderRow(rowState.row9)}
@@ -190,6 +204,7 @@ const Board = () => {
                         pattern="[0-7]{4,4}"
                         required
                         title="need four digit combination use only numbers 0-7"
+
                     />
                 </form>
                 <button onClick={restartGame}>
