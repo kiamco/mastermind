@@ -7,7 +7,7 @@
   - in your terminal run `git clone https://github.com/kiamco/mastermind.git`
   - `cd` into the mastermind directory and install dependencies by typing this into the terminal `npm install`
   - then `npm start`
-  - go to the browser and in the url type in `http://localhost:3000/` and you should be ablt to view it 
+  - go to the browser and in the url type in `http://localhost:3000/` and you should be able to view it 
   
 ## How I made the game
 
