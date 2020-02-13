@@ -16,7 +16,9 @@ const Board = () => {
         answer,
         feedDispatch,
         feedState,
-        getAnswer } = useContext(BoardContext);
+        getAnswer,
+        level,
+        } = useContext(BoardContext);
 
     const [tries, setTries] = useState(10);
 
@@ -36,11 +38,11 @@ const Board = () => {
     }
 
     const isCorrect = (arr1, arr2) => {
-        console.log(arr1,arr2)
+        console.log(arr1, arr2)
         const parsedAnswer = []
-        for(let i in arr1){
+        for (let i in arr1) {
             parsedAnswer.push(arr1[i].value)
-        }        
+        }
         return parsedAnswer.toString() === arr2.toString() ? setWin(true) : setWin(false);
     }
 
@@ -87,21 +89,105 @@ const Board = () => {
         const input = document.querySelector('input');
         input.disabled = true
     }
-    
+
     const enableInput = () => {
         const input = document.querySelector('input');
         input.disabled = false
     }
 
     useEffect(() => {
-        if(win || tries === 0 ){
+        if (win || tries === 0) {
             disableInput();
-        }else {
+        } else {
             enableInput();
         }
+    }, [disableInput, enableInput])
 
-        
-    }, [disableInput,enableInput])
+    const easy = () => {
+        return (
+            <>
+                <div className="input">
+                    {renderRow(rowState.row1)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row2)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row3)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row4)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row5)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row6)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row7)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row8)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row9)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row10)}
+                </div>
+
+            </>
+        )
+    }
+
+    const advanced = () => {
+        return (
+            <>
+                <div className="input">
+                    {renderRow(rowState.row1)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row2)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row3)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row4)}
+
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row5)}
+
+                </div>
+            </>)
+    }
+
+    const death = () => {
+        return (
+            <>
+                <div className="input">
+                    {renderRow(rowState.row1)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row2)}
+                </div>
+                <div className="input">
+                    {renderRow(rowState.row3)}
+                </div>
+            </>
+        )
+    }
+
+    
 
     return (
         <div className='board'>
@@ -110,89 +196,56 @@ const Board = () => {
                     <h1 className='game-over'>Game Over</h1>
                     :
                     !win ?
-                    (<div className="board-container">
-                        <div className="input-container">
-                            <div className="header">
-                                <div className="life">
-                                    <img src={heart} alt="" />
-                                    <h1>{tries}</h1>
+                        (<div className="board-container">
+                            <div className="input-container">
+                                <div className="header">
+                                    <div className="life">
+                                        <img src={heart} alt="" />
+                                        <h1>{tries}</h1>
+                                    </div>
+                                    <h1>Combinations</h1>
                                 </div>
-                                <h1>Combinations</h1>
+                                {level === 0 ? easy(): null}
+                                {level === 1 ? advanced() : null}
+                                {level === 2 ? death() : null}
                             </div>
-                            <div className="input">
-                                {renderRow(rowState.row1)}
+                            <div className="feedback-container">
+                                <h1>Feedback</h1>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed1)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed2)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed3)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed4)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed5)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed6)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed7)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed8)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed9)}
+                                </div>
+                                <div className="feedback">
+                                    {renderFeed(feedState.feed10)}
+                                </div>
                             </div>
-                            <div className="input">
-                                {renderRow(rowState.row2)}
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row3)}
+                        </div>)
+                        :
 
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row4)}
-
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row5)}
-
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row6)}
-
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row7)}
-
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row8)}
-
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row9)}
-                            </div>
-                            <div className="input">
-                                {renderRow(rowState.row10)}
-                            </div>
-                        </div>
-                        <div className="feedback-container">
-                            <h1>Feedback</h1>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed1)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed2)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed3)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed4)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed5)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed6)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed7)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed8)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed9)}
-                            </div>
-                            <div className="feedback">
-                                {renderFeed(feedState.feed10)}
-                            </div>
-                        </div>
-                    </div>)
-                    : 
-
-                    <h1 className='winner'>You Won</h1>
+                        <h1 className='winner'>You Won</h1>
 
             }
             <div className="controls">
@@ -204,7 +257,6 @@ const Board = () => {
                         pattern="[0-7]{4,4}"
                         required
                         title="need four digit combination use only numbers 0-7"
-
                     />
                 </form>
                 <button onClick={restartGame}>

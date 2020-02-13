@@ -6,6 +6,7 @@ export const BoardContext = createContext();
 export const BoardProvider = (props) => {
 
     const [answer, setAnswer] = useState([]);
+    const [level,setLevel] = useState(0);
 
     const getAnswer = () => {
         return axios.get('https://www.random.org/integers/?num=4&min=0&max=7&col=1&format=plain&rnd=new&base=10')
@@ -240,7 +241,9 @@ export const BoardProvider = (props) => {
                 answer,
                 feedState,
                 feedDispatch,
-                getAnswer
+                getAnswer,
+                level,
+                setLevel
             }}>
             {props.children}
         </BoardContext.Provider>

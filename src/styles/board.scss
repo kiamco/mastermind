@@ -9,17 +9,11 @@ h1.game-title{
 }
 
 .board-container {
-    
     max-width: 450px;
     width: 100%;
     margin: 20px auto;
     display: flex;
     justify-content: center;
-    // border: 1px solid black;
-
-
-
-
     .input-container {
         height: 100%;
         padding-top:5px;
@@ -47,8 +41,6 @@ h1.game-title{
                 font-size: 1.2rem;
                 border:1px solid black;
             }
-
-
         }
     }
 
